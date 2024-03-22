@@ -13,7 +13,7 @@ def get_next_api_key():
     api_key_count = (api_key_count + 1) % len(API_KEYS)
     return API_KEYS[api_key_count]
 
-def get_videos_data(query, api_key):
+def get_videos_data(query, api_key, page_token=None):
     params = {
         'part': 'snippet',
         'q': query,
@@ -22,7 +22,12 @@ def get_videos_data(query, api_key):
         'order': 'date',
         'key': api_key
     }
+
+    if page_token:
+        params['pageToken'] = page_token
+
     response = requests.get('https://youtube.googleapis.com/youtube/v3/search', params=params)
+    
     if response.status_code != 200:
         logger.error(f"error in getting videos. Status code: {response.status_code}")
         return None
