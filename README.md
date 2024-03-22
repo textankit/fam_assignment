@@ -14,3 +14,8 @@ To search for videos using this endpoint, need to add a query string to the web 
 
 In this case, the query parameter is query. can search for videos by adding "?query=football" to the end of the address, like this: http://127.0.0.1:5000/api/videos?query=football
 By doing this, telling the application to search for videos that are related to the term "football"
+
+-- .env file should conatins this for storing data in a collection
+MONGODB_HOST = "mongodb://localhost:27017"
+
+used database as Mydb, and collection inside it is youtube_api
